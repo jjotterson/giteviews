@@ -12,7 +12,7 @@
 '(1) current path, shell options, and set command to run in shell
 %curr_path     = @datapath    'current path, if different to repo, will cd to this when using shell and then revert back
 %shell_options = ""           'options passed to shell command (indicate if want table of log message, "output")
-%command       = @lower("git " + %args)
+%command       =  @lower("git " + %args)  'to fix quotes inside quotes 
 
 '(2) set default add-in options
 %repo_path = @replace( @datapath, "\", "/")      'location of git repo
@@ -32,7 +32,7 @@ endif
 
 'configuration needed to display git log on eviews: ****************************************************************************
 if %log == "true" then 
-
+    
     '(0) indicate that shell should output log table
     %shell_options = %shell_options + "output = gitTable"
     
@@ -63,7 +63,7 @@ endif
    
 cd %repo_path          
     if %command <> "git gui" then                  'getting a fake error in git gui
-    	  shell({%shell_options}) %command
+    	  shell({%shell_options}) {%command}
     else
         !tempErrorCountAux  = @maxerrcount + 1
         setmaxerrs !tempErrorCountAux
@@ -73,7 +73,8 @@ cd %curr_path
 
 'print git message in log 
 if %log == "true" then
-    logmode(name="Git output") -all error logmsg
+    logmode(name="Git output") -all logmsg
+    logclear(name="Git output")
     
     if @isobject("gitTable") then
     for !k  = 1 to @rows(gitTable)
@@ -88,4 +89,5 @@ if %log == "true" then
     else
         pagedelete {%work_page}
     endif
+   
 endif
