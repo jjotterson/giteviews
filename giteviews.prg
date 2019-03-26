@@ -29,6 +29,7 @@ if  @len(@option(1)) then
     endif       
 endif
 
+
 'configuration needed to display git log on eviews: ****************************************************************************
 if %log == "true" then 
 
@@ -42,7 +43,7 @@ if %log == "true" then
     
     wfuse gitlogwf                           'try opening wf
     
-    !killWf = @errorcount - !curr_errorcount 'indicate error - need to del. wf after code run
+    !killWf = @errorcount - !curr_errorcount 'indicate error - will need to del. wf after code run
     
     if !killWf > 0 then                      'catch 
       wfcreate(wf=gitlogwf) u 1 
@@ -58,12 +59,9 @@ if %log == "true" then
 endif
 
 
-
-
-'run shell command ************************************************************************************************************
+'run shell command and print log  ***********************************************************************************************
    
 cd %repo_path                                  
-
     if %command <> "git gui" then                  'getting a fake error in git gui
     	  shell({%shell_options}) %command
     else
@@ -71,7 +69,6 @@ cd %repo_path
         setmaxerrs !tempErrorCountAux
         shell git gui                              'else could call powershell, but this won't work in mac etc
     endif
-
 cd %curr_path                                  
 
 'print git message in log
