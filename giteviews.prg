@@ -15,7 +15,7 @@
 %command       = @lower("git " + %args)
 
 '(2) set default add-in options
-%repo_path = @replace( @datapath, "\", "/")      'location of git repo     
+%repo_path = @replace( @datapath, "\", "/")      'location of git repo
 %log       = "true"                              'indicate if want to see log
 
 '(2.1) override code variables 
