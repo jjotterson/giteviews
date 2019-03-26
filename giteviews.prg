@@ -45,12 +45,12 @@ if %log == "true" then
     
     !killWf = @errorcount - !curr_errorcount 'indicate error - will need to del. wf after code run
     
-    if !killWf > 0 then                      'catch 
-      wfcreate(wf=gitlogwf) u 1 
-    endif                                   
+    if !killWf > 0 then                      'catch
+      wfcreate(wf=gitlogwf) u 1
+    endif             
     
     '(2) create a page in wf to store the git log table.
-    %work_page = @getnextname("gitPage")            
+    %work_page = @getnextname("gitPage")
     while @pageexist(%work_page)
         %work_page = %work_page + "0"
     wend
@@ -61,30 +61,30 @@ endif
 
 'run shell command and print log  ***********************************************************************************************
    
-cd %repo_path                                  
+cd %repo_path          
     if %command <> "git gui" then                  'getting a fake error in git gui
     	  shell({%shell_options}) %command
     else
-        !tempErrorCountAux  = @maxerrcount + 1 
+        !tempErrorCountAux  = @maxerrcount + 1
         setmaxerrs !tempErrorCountAux
         shell git gui                              'else could call powershell, but this won't work in mac etc
     endif
-cd %curr_path                                  
+cd %curr_path
 
 'print git message in log
-if %log == "true" then 
+if %log == "true" then
     logmode(name="Git output") -all error logmsg
     
     if @isobject("gitTable") then
-    for !k  = 1 to @rows(gitTable) 
+    for !k  = 1 to @rows(gitTable)
         %git_output_line = gitTable(!k,1)
         logmsg  %git_output_line
     next
     endif
     
     'delete temp page or temp wf
-    if !killWf > 0 then  
-        wfclose gitlogwf 
+    if !killWf > 0 then
+        wfclose gitlogwf
     else
         pagedelete {%work_page}
     endif
