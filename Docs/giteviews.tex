@@ -1,0 +1,60 @@
+\documentclass{article}
+\title{EViews' Git add-in}
+\author{James Otterson}
+
+\usepackage{fullpage}
+\usepackage{ url}
+
+\begin{document}
+\maketitle
+
+\renewcommand{\abstractname}{Overview}
+\begin{abstract}
+    Giteviews is an Eviews add-in that can be used to run git commands and seeing their log output from Eviews.  It includes a 
+    a Git GUI entry in the Add-ins menu that will start a GUI of Git when selected.
+\end{abstract}
+
+\section{Summary}
+
+Git is a version control system that can be run from a command line or from several available GUIs, including Git GUI, a GUI that is packaged with Git.  This add-in 
+provides a direct connection to the git command line from Eviews and access to Git GUI from the Add-Ins drop-down menu.  Giteviews enables users to run 
+an exact copy of a git command direclty from Eviews; it also displays git log output in an Eviews log window.  For example, running
+ 
+\begin{verbatim}
+    git commit -m "enter message"
+\end{verbatim}
+
+\noindent from an Eviews program or the Eviews Command window will commit staged files with the given message.  
+
+\subsection{Giteviews Options}
+  
+  The add-in has two options: 
+  \begin{table}[h!]
+  \centering
+  \begin{tabular}{lll} \hline \hline
+    Option          & Default       & Descrition \\ \hline
+    log             & true          & display git logs in the Eviews log window \\
+    repo\_path      & @datapath     & points to the repository location \\ \hline \hline \\
+  \end{tabular}
+  \end{table}
+
+For example, running
+\begin{verbatim}
+    git(repo_path = U:/filename, log = false) commit -m "enter message"
+\end{verbatim}
+
+will commit the files in the repo located in the U:/filename folder, and it will supress the log output.
+
+\section{References on Git}
+
+ 
+ \emph{The main reference on git are:}
+ \\ \indent  \url{https://git-scm.com/}  
+ \\ \emph{Git Command Line References:}
+ \\ \indent  \url{https://git-scm.com/docs}  (reference manual)
+ \\ \indent  \url{https://git-scm.com/book/en/v2}  (advanced book)
+ \\ \indent  \small{\url{https://github.github.com/training-kit/downloads/github-git-cheat-sheet.pdf}} (Cheat Sheet)
+ \\\emph{Reference for Git GUI:}
+ \\ \indent \small{ \url{https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Graphical-Interfaces}}
+
+\end{document}
