@@ -24,11 +24,15 @@ if  @len(@option(1)) then
       endif
 
       show %repo_path
-      show %r_shell
 endif
 
 'pass this option to command:
 if %log == "true" then 
+    '%work_page = @getnextname("scratch")            'start workfile
+    'while @pageexist(%work_page)
+	'    %work_page = %work_page + "0"
+    'wend
+    'pagecreate(page={%work_page}) {%FREQ} {%SMPL}
     %shell_options = %shell_options + "output = junk"
 endif
 
@@ -40,17 +44,22 @@ endif
 'run command
 cd %repo_path                                  'open repo path
 'run git command
-if %command <> "git gui" then
+if %command <> "git gui" then                  'getting a fake error in git gui
 	  shell({%shell_options}) %command
 else 
-    shell(exit = 1) powershell git gui         'using powershell just to avoid a fake error window.
+    !current_max = @maxerrcount
+    setmaxerrs 2
+    shell git gui         'else could call powershell, but then won't work in mac
+    setmaxerrs !current_max
 endif
 
 cd %curr_path                                  'move back to initial path
- %log == "true" then
+
+'print git message in log
+if %log == "true" then 
  logmode(name="Git output") -all error logmsg
  for !k  = 1 to @rows(junk) 
-     %git_output_line = temp(!k,1)
+     %git_output_line = junk(!k,1)
      logmsg  %git_output_line
   next
-dif
+endif
