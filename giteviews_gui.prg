@@ -6,4 +6,4 @@
 '*********************************************************************************************************************************
 !tempErrorCountAux  = @maxerrcount + 1     'get unwanted error; in windows can use powershell to avoid this.
 setmaxerrs !tempErrorCountAux
-shell git gui                              
+shell git gui                             
