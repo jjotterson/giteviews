@@ -71,7 +71,7 @@ cd %repo_path
     endif
 cd %curr_path
 
-'print git message in log
+'print git message in log 
 if %log == "true" then
     logmode(name="Git output") -all error logmsg
     
