@@ -1,5 +1,5 @@
 %docs = ".\Docs\eviews.pdf"
-%url = "https://raw.githubusercontent.com/.../update_info.xml"
+%url = "https://github.com/jjotterson/giteviews/blob/master/update_info.xml"
 %version = "1.0"
 
 ' a) add-in called in via code (go straight to the add-in & extract options or default per passed-in arguments)
