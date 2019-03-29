@@ -32,7 +32,8 @@ endif
 
 'configuration needed to display git log on eviews: ****************************************************************************
 if %log == "true" then 
-    
+    logmode(name="Git output") -all logmsg  
+
     '(0) indicate that shell should output log table
     %shell_options = %shell_options + "output = gitTable"
     
@@ -41,6 +42,7 @@ if %log == "true" then
     setmaxerrs !tempErrorCountAux            'start try-catch block
     !curr_errorcount = @errorcount
     
+    logmode()
     wfuse gitlogwf                           'try opening wf
     
     !killWf = @errorcount - !curr_errorcount 'indicate error - will need to del. wf after code run
@@ -73,13 +75,13 @@ cd %curr_path
 
 'print git message in log 
 if %log == "true" then
-    logmode(name="Git output") -all logmsg
+    
     logclear(name="Git output")
     
     if @isobject("gitTable") then
     for !k  = 1 to @rows(gitTable)
         %git_output_line = gitTable(!k,1)
-        logmsg  %git_output_line
+        logmsg  {%git_output_line}
     next
     endif
     
