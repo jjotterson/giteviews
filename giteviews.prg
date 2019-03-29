@@ -49,7 +49,6 @@ if %log == "true" then
     setmaxerrs !tempErrorCountAux            'start try-catch block
     !curr_errorcount = @errorcount
     
-    logmode()
     wfuse gitlogwf                           'try opening wf
     
     !killWf = @errorcount - !curr_errorcount 'indicate error - will need to del. wf after code run
