@@ -1,4 +1,4 @@
-%docs = ".\Docs\eviews.pdf"
+%docs = ".\Docs\giteviews.pdf"
 %url = "https://github.com/jjotterson/giteviews/blob/master/update_info.xml"
 %version = "1.0"
 
