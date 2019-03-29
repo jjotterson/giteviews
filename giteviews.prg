@@ -4,6 +4,7 @@
 '  add-in user Options:
 '  - repo_path   - Defaults to @datapath.  Mainly used to ensure git gui starts from right folder.
 '  - log         - Show git output in Eviews log window (called git log).  Default to true.  
+'  - logOptions  - specify logmode options of log window.  Default to -all logmsg, only display git log message.
 '
 '*********************************************************************************************************************************
 
@@ -17,6 +18,7 @@
 '(2) set default add-in options
 %repo_path = @replace( @datapath, "\", "/")      'location of git repo
 %log       = "true"                              'indicate if want to see log
+%logOptions =  " -all logmsg"
 
 '(2.1) override code variables 
 if  @len(@option(1)) then
@@ -26,13 +28,18 @@ if  @len(@option(1)) then
     
     if @len(@equaloption("log")) then
         %log = @lower(@equaloption("log"))
+    endif
+
+    if @len(@equaloption("logOptions")) then
+        %logOptions = @lower(@equaloption("logOptions"))
     endif       
 endif
 
 
 'configuration needed to display git log on eviews: ****************************************************************************
 if %log == "true" then 
-    logmode(name="Git output") -all logmsg  
+    logmode(name="Git output") {%logOptions}
+    logclear(name="Git output")
 
     '(0) indicate that shell should output log table
     %shell_options = %shell_options + "output = gitTable"
@@ -75,9 +82,7 @@ cd %curr_path
 
 'print git message in log 
 if %log == "true" then
-    
-    logclear(name="Git output")
-    
+     
     if @isobject("gitTable") then
     for !k  = 1 to @rows(gitTable)
         %git_output_line = gitTable(!k,1)

@@ -1,6 +1,7 @@
 \documentclass{article}
 \title{EViews' Git add-in}
 \author{James Otterson}
+\date{}
 
 \usepackage{fullpage}
 \usepackage{ url}
@@ -10,31 +11,32 @@
 
 \renewcommand{\abstractname}{Overview}
 \begin{abstract}
-    Giteviews is an Eviews add-in that can be used to run git commands and seeing their log output from Eviews.  It includes a 
-    a Git GUI entry in the Add-ins menu that will start a GUI of Git when selected.
+    GitEViews is an EViews add-in that runs git commands and display their output in EViews.  It includes a 
+    Git GUI entry in the Add-ins menu that starts the GUI.
 \end{abstract}
 
 \section{Summary}
 
-Git is a version control system that can be run from a command line or from several available GUIs, including Git GUI, a GUI that is packaged with Git.  This add-in 
-provides a direct connection to the git command line from Eviews and access to Git GUI from the Add-Ins drop-down menu.  Giteviews enables users to run 
-an exact copy of a git command directly from Eviews; it also displays git log output in an Eviews log window.  For example, running
+Git is a version control system that can be run from a command line or from several available GUIs, including Git GUI which is packaged with Git.  This add-in 
+provides a direct connection to the git command line from EViews and access to Git GUI from the Add-Ins drop-down menu.  GitEViews enables users to run 
+an exact copy of a git command directly from EViews; it also displays git log output in an EViews log window.  For example, running
  
 \begin{verbatim}
     git commit -m "enter message"
 \end{verbatim}
 
-\noindent from an Eviews program or the Eviews Command window will commit staged files with the given message.  
+\noindent from an EViews program or the EViews Command window will commit staged files with the given message.  
 
-\subsection{Giteviews Options}
+\subsection{GitEViews Options}
   
-  The add-in has two options: 
+  The add-in has three options: 
   \begin{table}[h!]
   \centering
   \begin{tabular}{lll} \hline \hline
     Option          & Default       & Description \\ \hline
-    log             & true          & display git logs in the Eviews log window \\
-    repo\_path      & @datapath     & points to the repository location \\ \hline \hline \\
+    repo\_path      & @datapath     & points to the repository location. \\ 
+    log             & true          & display git logs in the EViews log window. \\
+    logOptions      & -all logmsg   & only disply git log message in the log window. \\ \hline \hline \\
   \end{tabular}
   \end{table}
 
@@ -43,12 +45,26 @@ For example, running
     git(repo_path = U:/filename, log = false) commit -m "enter message"
 \end{verbatim}
 
-will commit the files in the repo located in the U:/filename folder, and it will suppress the log output.
+will commit the files in the repo located in the U:/filename folder, and it will suppress the log output. Running the code 
+\begin{verbatim}
+    git(repo_path = U:/filename, logOptions = all) commit -m "enter message"
+\end{verbatim}
+will commit the files in the repo located in the U:/filename folder, and it will display in the log window not only the 
+git messages but also all other EViews messages.
+\\
+\\
+\emph{NOTE:} To avoid the popup of a temporary workfile used to store the git log message, create a workfile called gitlogwf, like in the line below, and leave it open during your run.  
+\begin{verbatim}
+    wfcreate(wf=gitlogwf) u 1
+\end{verbatim}    
+
+
+\newpage 
 
 \section{References on Git}
 
  
- \emph{The main reference on git are:}
+ \emph{The main reference on git is:}
  \\ \indent  \url{https://git-scm.com/}  
  \\ \emph{Git Command Line References:}
  \\ \indent  \url{https://git-scm.com/docs}  (reference manual)
