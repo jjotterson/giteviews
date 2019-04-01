@@ -13,6 +13,11 @@
 
 ## Installing giteviews add-in
 
+- Can clink on the "giteviews" link on 
+  http://www.eviews.com/Addins/addins.shtml
+  
+or
+
 - Git users: clone the repo to your local machine & run ./installers/giteviews.aipz
 - Non-Git users: click the "view raw" link at: .../giteviews.aipz
 - Click yes to all the buttons - giteviews add-in is now installed!
