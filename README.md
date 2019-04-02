@@ -13,7 +13,7 @@
 
 ## Installing giteviews add-in
 
-- Can clink on the "giteviews" link on 
+- Click on the "giteviews" link on 
   http://www.eviews.com/Addins/addins.shtml
   
 or
