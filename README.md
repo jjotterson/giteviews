@@ -1,22 +1,31 @@
-# Git or Git GUI Eviews add-in
+# Giteviews - easy access to git / git gui in Eviews
 
-- This repository contains the add-in used to run Git from EViews
-- The implementation needs Git installed in the computer
-
-## Core folders/files:
-
-- ./giteviews.prg is the EViews program that executes any git command line 
-- ./giteviews_gui.prg runs Git GUI
-- ./Docs contains the documentation of the add-in
-- ./Installers/giteviews.aipz run it to begin the EViews installation process on your PC
+**Install:** use Eviews' Add-ins option (see below) or by selecting giteviews on <br>
+http://www.eviews.com/Addins/addins.shtml 
+ 
+## Use
+This is an Eviews add-in that allows the user to type git commands on an eviews workfile / command line.  It also runs git gui from the repo on the current path.  See the [documentation](https://github.com/jjotterson/giteviews/blob/master/Docs/giteviews.pdf) for more information and the slides below for a short introduction.
 
 
-## Installing giteviews add-in
 
-- Click on the "giteviews" link on 
-  http://www.eviews.com/Addins/addins.shtml
-  
-or
+
+### installing 
+<br>
+
+![installing giteviews](https://github.com/jjotterson/giteviews/blob/master/Docs/eviewsGit1.gif)
+
+<br>
+<br>
+
+
+
+### sample use
+
+![installing giteviews](https://github.com/jjotterson/giteviews/blob/master/Docs/eviewsGit2.gif)
+
+
+
+## Other ways to installing giteviews 
 
 - Git users: clone the repo to your local machine & run ./installers/giteviews.aipz
 - Non-Git users: click the "view raw" link at: .../giteviews.aipz
